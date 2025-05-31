@@ -1,0 +1,19 @@
+eureka:
+client:
+  register-with-eureka: false
+
+server:
+  port: ${GATEWAY_SERVICE_PORT:8081}
+
+security:
+  jwt:
+    access:
+      token:
+        secret: levc/guxCQY5xgOePnfbG52ZjB4Jn+PvZMK+DBxwBKHG3ODmlQQ8FBWO4juJkTJd1htUl82Io+LAz54kKbKmQw==
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
