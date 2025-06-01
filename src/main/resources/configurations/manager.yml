@@ -1,0 +1,17 @@
+eureka:
+  instance:
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_INSTANCE_HOSTNAME:localhost}:${EUREKA_INSTANCE_PORT:8761}/eureka
+
+server:
+  port: 8011
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/manager
+    username: admin
+    password: admin
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
