@@ -3,7 +3,7 @@ client:
   register-with-eureka: false
 
 server:
-  port: ${GATEWAY_SERVICE_PORT:8081}
+  port: ${GATEWAY_SERVICE_PORT:8080}
 
 security:
   jwt:
@@ -17,3 +17,12 @@ spring:
       discovery:
         locator:
           enabled: true
+      routes:
+        - id: account
+          uri: lb://ACCOUNT
+          predicates:
+            - Path=/api/auth/**, /api/account/**, /api/admin/**
+        - id: flow
+          uri: lb://FLOW
+          predicates:
+              - Path=/flow/**
