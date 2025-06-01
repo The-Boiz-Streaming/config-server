@@ -1,0 +1,44 @@
+eureka:
+  instance:
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_INSTANCE_HOSTNAME:localhost}:${EUREKA_INSTANCE_PORT:8761}/eureka
+
+server:
+  port: ${SERVER_PORT:8010}
+
+spring:
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:account}
+    username: ${POSTGRES_USER:boiz-streaming}
+    password: ${POSTGRES_PASSWORD:boiz-streaming}
+
+  redis:
+    redisson:
+      config: |
+        singleServerConfig:
+          address: "redis://${REDIS_HOST:localhost}:${REDIS_PORT:6379}"
+          password: "${REDIS_PASSWORD:redis-password}"
+      
+
+security:
+  jwt:
+    token:
+      secret:
+        access: levc/guxCQY5xgOePnfbG52ZjB4Jn+PvZMK+DBxwBKHG3ODmlQQ8FBWO4juJkTJd1htUl82Io+LAz54kKbKmQw==
+        refresh: dkplOGJk8xp+xyJNMggCFocm0AWnBl6s4GfYLeQwlE0w0+G7PKGovWjL6fCy622Tg30scZ3P37EZ7yjvadurog==
+
+  admin:
+    email: admin@example.com
+    password: strong@password
+
+boiz-sreaming:
+  auth:
+    refresh-token-cache:
+      topic: boiz-streaming:refresh-token
+      ttl: PT1H
