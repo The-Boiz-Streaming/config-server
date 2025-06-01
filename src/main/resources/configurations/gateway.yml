@@ -26,3 +26,7 @@ spring:
           uri: lb://FLOW
           predicates:
               - Path=/flow/**
+        - id: manager
+          uri: lb://MANAGER
+          predicates:
+              - Path=/manager/**
